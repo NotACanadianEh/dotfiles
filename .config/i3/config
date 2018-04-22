@@ -39,10 +39,12 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightne
 
 
 # Media player controls
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPlay exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
+bindsym XF86AudioStop exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop"
+bindsym XF86AudioPrev exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
+bindsym XF86AudioNext exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
+
+
 
 # kill focused window
 bindsym $super+c kill
@@ -134,24 +136,8 @@ mode "resize" {
 }
 bindsym $super+r mode "resize"
 
-# panel
-bar {
-	colors {
-	background #282a36
-	statusline #2f343f
-	separator #4b5262
-
-		# colour of border, background, and text
-	focused_workspace	#2f343f	#bd93f9	#d8dee8
-	active_workspace	#2f343f	#2f343f	#d8dee8
-	inactive_workspace	#2f343f	#2f343f	#d8dee8
-	urgent_workspace	#2f343f	#f1fa8c	#2f343f
-    }
-	status_command i3status
-}
-
 # window rules, you can find the window class using xprop
-for_window [class=".*"] border pixel 4
+for_window [class=".*"] border pixel 0
 assign [class=URxvt] $terminals
 assign [class=Chromium-browser|Transmission-gtk] $chromium
 assign [class=Thunar|File-roller|Nemo] $filemanager
@@ -182,3 +168,11 @@ exec emacs
 exec nemo
 exec Chromium-browser
 exec spotify
+
+
+# i3-gaps
+gaps inner 5
+gaps outer 10
+
+# Launch bar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
