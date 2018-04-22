@@ -146,7 +146,7 @@ assign [class=evolution] $email
 assign [class=Audacity|Vlc|mpv|Ghb|Xfburn|Gimp*|Inkscape] 7
 assign [class=Lxappearance|System-config-printer.py|Lxtask|GParted|Pavucontrol|Exo-helper*|Lxrandr|Arandr] 6
 for_window [class=Viewnior|feh|Audacious|File-roller|Lxappearance|Lxtask|Pavucontrol] floating enable
-for_window [class=URxvt|Firefox|Geany|Evince|Soffice|libreoffice*|mpv|Ghb|Xfburn|Gimp*|Inkscape|Vlc|Lxappearance|Audacity] focus
+for_window [class=URxvt|Firefox|Evolution|Chromium-browser|Geany|Evince|Soffice|libreoffice*|mpv|Ghb|Xfburn|Gimp*|Inkscape|Vlc|Lxappearance|Audacity|Emacs] focus
 for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo-helper*|Lxrandr|Arandr] focus
 
 
@@ -164,15 +164,16 @@ exec xinput set-prop 11 272 1
 # startup auto
 exec xmodmap ~/.xmodmap
 exec dropbox start
-exec emacs
 exec nemo
-exec Chromium-browser
+exec evolution
+exec chromium-browser
 exec spotify
-
+exec emacs
 
 # i3-gaps
-gaps inner 5
+gaps inner 10
 gaps outer 10
+smart_gaps on
 
 # Launch bar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh

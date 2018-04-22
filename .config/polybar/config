@@ -17,7 +17,42 @@ secondary = #d8dee8
 alert = #f1fa8c
 
 
-[bar/example]
+[bar/top]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 30
+radius = 0.0
+fixed-center = true
+bottom = false
+background = ${colors.background}
+foreground = ${colors.foreground}
+line-size = 3
+line-color = #f00
+border-size = 0
+border-color = #00000000
+padding-left = 0
+padding-right = 0
+module-margin-left = 1
+module-margin-right = 2
+font-0 = "DejaVu Sans Mono 13"
+font-1 = "FontAwesome:regular 15"
+font-2 = "Font Awesome regular 15"
+
+modules-left = spotify
+modules-center = date
+modules-right = wlan dropbox-isrunning
+
+tray-position =
+tray-padding = 0
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+
+[bar/bottom]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
 height = 30
@@ -34,11 +69,11 @@ foreground = ${colors.foreground}
 line-size = 3
 line-color = #f00
 
-border-size = 2
+border-size = 0
 border-color = #00000000
 
 padding-left = 0
-padding-right = 2
+padding-right = 0
 
 module-margin-left = 1
 module-margin-right = 2
@@ -49,21 +84,11 @@ font-2 = "Font Awesome regular 15"
 
 
 modules-left = bspwm i3
-modules-center = spotify
-modules-right = filesystem volume xbacklight wlan  dropbox-isrunning battery date
+modules-center =
+modules-right = filesystem volume xbacklight  battery
 
 tray-position =
 tray-padding = 0
-;tray-transparent = true
-;tray-background = #0063ff
-
-;wm-restack = bspwm
-;wm-restack = i3
-
-;override-redirect = true
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
@@ -127,10 +152,9 @@ label-indicator-underline = ${colors.secondary}
 [module/filesystem]
 type = internal/fs
 interval = 25
-
 mount-0 = /
 
-label-mounted =   %percentage_used%%
+label-mounted =   %percentage_free%% of %total% used
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
 
@@ -259,7 +283,7 @@ format-connected = <ramp-signal> <label-connected>
 
 label-connected = %essid%
 
-format-disconnected = 
+format-disconnected = "disconnected"
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
@@ -431,9 +455,11 @@ click-left = ~/.config/polybar/isrunning-dropbox.sh --toggle
 
 [module/spotify]
 type = custom/script
-interval = 2
-format-prefix = " "
+interval = 3
+
 format = <label>
 exec = ~/.config/polybar/spotify
+click-left = ~/.config/polybar/spotify pause
+click-right = ~/.config/polybar/spotify next
 
 format-underline = #1db954
