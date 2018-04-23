@@ -1,9 +1,8 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-TERM=rxvt-unicode
+TERM=xterm-256color
 # Path to your oh-my-zsh installation.
 export ZSH=/home/nathan/.oh-my-zsh
-
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -25,8 +24,7 @@ x-yank () {
   zle yank
 }
 zle -N x-yank
-bindkey -e '\ew' x-copy-region-as-kill
-bindkey -e '^W' x-kill-region
+bindkey -e '^W' x-copy-region-as-kill
 bindkey -e '^Y' x-yank
 
 # Set list of themes to load

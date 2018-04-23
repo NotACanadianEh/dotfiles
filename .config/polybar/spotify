@@ -3,7 +3,7 @@
 import dbus
 from sys import argv
 
-trunclen = 25
+trunclen = 50
 
 try:
     session_bus = dbus.SessionBus()

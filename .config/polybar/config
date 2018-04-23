@@ -40,7 +40,7 @@ font-2 = "Font Awesome regular 15"
 
 modules-left = spotify
 modules-center = date
-modules-right = wlan dropbox-isrunning
+modules-right = dropbox-isrunning wlan
 
 tray-position =
 tray-padding = 0
@@ -154,7 +154,7 @@ type = internal/fs
 interval = 25
 mount-0 = /
 
-label-mounted =   %percentage_free%% of %total% used
+label-mounted =   %used% of %total% used
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
 
@@ -366,16 +366,17 @@ type = internal/battery
 battery = BAT0
 adapter = AC
 full-at = 98
+poll-interval = 5
+time-format = %H Hrs, %M Mins
 
 format-charging = <animation-charging> <label-charging>
 format-charging-underline = #ffb52a
 
-format-discharging = <ramp-capacity> <label-discharging>
-
+format-discharging =  <ramp-capacity> <label-discharging>
+label-discharging =  %percentage%% |  %time% Until Empty
 
 format-full-prefix = ""
 format-full-prefix-foreground = ${colors.foreground-alt}
-
 
 ramp-capacity-0 =  
 ramp-capacity-1 =  
@@ -449,9 +450,10 @@ margin-bottom = 5
 
 [module/dropbox-isrunning]
 type = custom/script
-exec = ~/.config/polybar/isrunning-dropbox.sh
+exec = ~/.config/polybar/dropbox.py
 interval = 10
-click-left = ~/.config/polybar/isrunning-dropbox.sh --toggle
+click-left =  ~/.config/polybar/dropbox.py start
+click-right =  ~/.config/polybar/dropbox.py stop
 
 [module/spotify]
 type = custom/script
