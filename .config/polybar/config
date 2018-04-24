@@ -21,10 +21,12 @@ alert = #f1fa8c
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
 height = 30
+offset-x = 0%
+offset-y = 0%
 radius = 0.0
 fixed-center = true
 bottom = false
-background = ${colors.background}
+background = #00000000; ${colors.background}
 foreground = ${colors.foreground}
 line-size = 3
 line-color = #f00
@@ -32,15 +34,16 @@ border-size = 0
 border-color = #00000000
 padding-left = 0
 padding-right = 0
+
 module-margin-left = 1
 module-margin-right = 2
-font-0 = "DejaVu Sans Mono 13"
-font-1 = "FontAwesome:regular 15"
-font-2 = "Font Awesome regular 15"
+font-0 = DejaVu:pixelsize=14;
+font-1 = FontAwesome:pixelsize=18;
 
+;override-redirect = true
 modules-left = spotify
-modules-center = date
-modules-right = dropbox-isrunning wlan
+modules-center = i3
+modules-right =  dropbox-isrunning wlan cpu volume xbacklight battery date
 
 tray-position =
 tray-padding = 0
@@ -54,16 +57,16 @@ cursor-scroll = ns-resize
 
 [bar/bottom]
 ;monitor = ${env:MONITOR:HDMI-1}
-width = 100%
+width = 96.2%
 height = 30
-;offset-x = 1%
+offset-x = 2.4%
 ;offset-y = 1%
 radius = 0.0
 fixed-center = true
 
 bottom = true
-
-background = ${colors.background}
+override-redirect = true
+background = #00000000 ;${colors.background}
 foreground = ${colors.foreground}
 
 line-size = 3
@@ -78,14 +81,13 @@ padding-right = 0
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = "DejaVu Sans Mono 13"
-font-1 = "FontAwesome:regular 15"
-font-2 = "Font Awesome regular 15"
+font-0 = DejaVu:pixelsize=14;0
+font-1 = FontAwesome:pixelsize=14;0
 
 
-modules-left = bspwm i3
+modules-left =
 modules-center =
-modules-right = filesystem volume xbacklight  battery
+modules-right =
 
 tray-position =
 tray-padding = 0
@@ -111,7 +113,18 @@ type = internal/pulseaudio
 ;   <label-volume> (default)
 ;   <ramp-volume>
 ;   <bar-volume>
-format-volume = <ramp-volume> <label-volume>
+format-volume =  <label-volume>
+
+bar-volume-width = 12
+bar-volume-gradient = false
+bar-volume-indicator = │
+bar-volume-indicator-font = 2
+bar-volume-indicator-foreground = #ff
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
 
 ; Available tags:
 ;   <label-muted> (default)
@@ -121,7 +134,7 @@ format-volume = <ramp-volume> <label-volume>
 
 ; Available tokens:
 ;   %percentage% (default)
-;label-volume = %percentage%%
+label-volume =  %percentage%%
 
 ; Available tokens:
 ;   %percentage% (default)
@@ -162,7 +175,7 @@ label-unmounted-foreground = ${colors.foreground-alt}
 type = internal/bspwm
 
 label-focused = %index%
-label-focused-background = ${colors.background-alt}
+label-focused-background =  ${colors.background-alt}
 label-focused-underline= ${colors.primary}
 label-focused-padding = 2
 
@@ -185,16 +198,17 @@ wrapping-scroll = false
 
 ; Only show workspaces on the same output as the bar
 ;pin-workspaces = true
-
+strip-wsnumbers = true
 label-mode-padding = 2
 label-mode-foreground = #000
 label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
 label-focused = %name%
-label-focused-background = ${module/bspwm.label-focused-background}
-label-focused-underline = ${module/bspwm.label-focused-underline}
-label-focused-padding = ${module/bspwm.label-focused-padding}
+label-focused-foreground = #ffffff
+label-focused-background = #00FFFFFF
+label-focused-underline = #bd93f9
+label-focused-padding = 2
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = %name%
@@ -235,7 +249,7 @@ type = internal/xbacklight
 ;   <label> (default)
 ;   <ramp>
 ;   <bar>
-format = <label> <ramp>
+format = <label>
 
 ; Available tokens:
 ;   %percentage% (default)
@@ -262,10 +276,20 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = ""
 
-format-underline = #f90000
-label = %percentage:2%%
+; Available tags:
+;   <label> (default)
+;   <bar-load>
+;   <ramp-load>
+;   <ramp-coreload>
+format = <label>
+
+; Available tokens:
+;   %percentage% (default) - total cpu load
+;   %percentage-cores% - load percentage for each core
+;   %percentage-core[1-9]% - load percentage for specific core
+label =  %percentage%%
+
 
 [module/memory]
 type = internal/memory
@@ -319,8 +343,8 @@ date-alt = " %Y-%m-%d"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix = 
+
 
 label = %date% %time%
 
@@ -339,7 +363,7 @@ use-ui-max = true
 ;   <label-volume> (default)
 ;   <ramp-volume>
 ;   <bar-volume>
-format-volume = <ramp-volume> <label-volume>
+format-volume = <bar-volume> <label-volume>
 
 ; Available tags:
 ;   <label-muted> (default)
@@ -349,12 +373,22 @@ format-volume = <ramp-volume> <label-volume>
 
 ; Available tokens:
 ;   %percentage% (default)
-;label-volume = %percentage%%
+;label-volume = %percentage%:dd%
 
 ; Available tokens:
 ;   %percentage% (default)
 label-muted = 🔇 muted
 label-muted-foreground = #66
+
+bar-volume-gradient = false
+bar-volume-indicator = │
+bar-volume-indicator-font = 2
+bar-volume-indicator-foreground = #ff
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
 
 ; Only applies if <ramp-volume> is used
 ramp-volume-0 = 🔈
@@ -373,7 +407,7 @@ format-charging = <animation-charging> <label-charging>
 format-charging-underline = #ffb52a
 
 format-discharging =  <ramp-capacity> <label-discharging>
-label-discharging =  %percentage%% |  %time% Until Empty
+label-discharging =  %percentage%%
 
 format-full-prefix = ""
 format-full-prefix-foreground = ${colors.foreground-alt}
@@ -381,7 +415,6 @@ format-full-prefix-foreground = ${colors.foreground-alt}
 ramp-capacity-0 =  
 ramp-capacity-1 =  
 ramp-capacity-2 =  
-
 
 animation-charging-0 = 
 animation-charging-1 = 
@@ -463,5 +496,3 @@ format = <label>
 exec = ~/.config/polybar/spotify
 click-left = ~/.config/polybar/spotify pause
 click-right = ~/.config/polybar/spotify next
-
-format-underline = #1db954

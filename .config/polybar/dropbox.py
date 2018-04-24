@@ -17,4 +17,8 @@ if len(argv) > 1:
 
 status = shell_output(['dropbox', 'status'])
 status = status.replace('Dropbox ', '')
-print(' Dropbox: {0}'.format(status))
+
+if 'sync' in status.lower():
+    status = 'Syncing'
+
+print(' {0}'.format(status))

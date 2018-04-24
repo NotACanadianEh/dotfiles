@@ -80,12 +80,14 @@ bindsym $super+space floating toggle
 # change focus between tiling / floating windows
 bindsym $super+Shift+space focus mode_toggle
 
-set $emacs "1: Emacs "
-set $terminals "2: Terminals "
-set $chromium "3: Chromium "
-set $filemanager "4: Files "
-set $spotify "10: Spotify "
-set $email "5: Emails "
+set $emacs "1:"
+set $terminals "2:"
+set $chromium "3:"
+set $filemanager "4:"
+set $spotify "10:"
+set $email "5:"
+set $misc "6:"
+set $art "7:"
 
 # switch to workspace
 bindsym $super+1 workspace $emacs
@@ -93,8 +95,8 @@ bindsym $super+2 workspace $terminals
 bindsym $super+3 workspace $chromium
 bindsym $super+4 workspace $filemanager
 bindsym $super+5 workspace $email
-bindsym $super+6 workspace 6
-bindsym $super+7 workspace 7
+bindsym $super+6 workspace $misc
+bindsym $super+7 workspace $art
 bindsym $super+8 workspace 8
 bindsym $super+9 workspace 9
 bindsym $super+0 workspace $spotify
@@ -105,8 +107,8 @@ bindsym $super+Shift+2 move container to workspace $terminals
 bindsym $super+Shift+3 move container to workspace $chromium
 bindsym $super+Shift+4 move container to workspace $filemanager
 bindsym $super+Shift+5 move container to workspace $email
-bindsym $super+Shift+6 move container to workspace 6
-bindsym $super+Shift+7 move container to workspace 7
+bindsym $super+Shift+6 move container to workspace $misc
+bindsym $super+Shift+7 move container to workspace $art
 bindsym $super+Shift+8 move container to workspace 8
 bindsym $super+Shift+9 move container to workspace 9
 bindsym $super+Shift+0 move container to workspace $spotify
@@ -124,7 +126,7 @@ for_window [class="Spotify"] move to workspace $spotify
 bindsym $super+Shift+r restart
 
 # exit i3
-bindsym $super+q exec "i3-nagbar -t warning -m 'Really, exit?' -b 'Yes' 'i3-msg exit'"
+bindsym $super+q exec i3-msg exit
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -137,22 +139,22 @@ mode "resize" {
 bindsym $super+r mode "resize"
 
 # window rules, you can find the window class using xprop
-for_window [class=".*"] border pixel 0
+for_window [class=".*"] border pixel 5
 assign [class=URxvt] $terminals
 assign [class=Chromium-browser|Transmission-gtk] $chromium
 assign [class=Thunar|File-roller|Nemo] $filemanager
 assign [class=Geany|Evince|Gucharmap|Soffice|libreoffice*] $filemanager
 assign [class=evolution] $email
-assign [class=Audacity|Vlc|mpv|Ghb|Xfburn|Gimp*|Inkscape] 7
-assign [class=Lxappearance|System-config-printer.py|Lxtask|GParted|Pavucontrol|Exo-helper*|Lxrandr|Arandr] 6
+assign [class=Audacity|Vlc|mpv|Ghb|Xfburn|Gimp*|Inkscape] $art
+assign [class=Lxappearance|System-config-printer.py|Lxtask|GParted|Pavucontrol|Exo-helper*|Lxrandr|Arandr] $misc
 for_window [class=Viewnior|feh|Audacious|File-roller|Lxappearance|Lxtask|Pavucontrol] floating enable
 for_window [class=URxvt|Firefox|Evolution|Chromium-browser|Geany|Evince|Soffice|libreoffice*|mpv|Ghb|Xfburn|Gimp*|Inkscape|Vlc|Lxappearance|Audacity|Emacs] focus
 for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo-helper*|Lxrandr|Arandr] focus
 
 
 # colour of border, background, text, indicator, and child_border
-client.focused			#bf616a #2f343f #d8dee8 #bf616a #d8dee8
-client.focused_inactive	#2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.focused			#bd93f9 #2f343f #d8dee8 #d8dee8 #d8dee8
+client.focused_inactive		#2f343f #2f343f #d8dee8 #2f343f #2f343f
 client.unfocused		#2f343f #2f343f #d8dee8 #2f343f #2f343f
 client.urgent			#2f343f #2f343f #d8dee8 #2f343f #2f343f
 client.placeholder		#2f343f #2f343f #d8dee8 #2f343f #2f343f
@@ -173,7 +175,8 @@ exec emacs
 # i3-gaps
 gaps inner 10
 gaps outer 10
-smart_gaps on
+#smart_gaps on
+
 
 # Launch bar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
