@@ -66,7 +66,7 @@ Xft.rgba: rgb
 URxvt.geometry:			82x16
 URxvt*letterSpace:	    -1
 URxvt.lineSpace:		0
-URxvt*internalBorder:   24
+URxvt*internalBorder:   0
 URxvt*externalBorder:   0
 URxvt*depth:            32
 URxvt*saveline:         2000

@@ -27,6 +27,8 @@ bindsym $super+l exec i3lock -i ~/.wallpaper.png
 bindsym $super+Shift+w exec chromium-browser
 bindsym $super+Shift+f exec nemo
 bindsym $super+Shift+g exec geany
+bindsym $super+e exec emacsclient --create-frame
+
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
@@ -126,7 +128,7 @@ for_window [class="Spotify"] move to workspace $spotify
 bindsym $super+Shift+r restart
 
 # exit i3
-bindsym $super+q exec i3-msg exit
+bindsym $super+Shift+q exec i3-msg exit
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -139,7 +141,7 @@ mode "resize" {
 bindsym $super+r mode "resize"
 
 # window rules, you can find the window class using xprop
-for_window [class=".*"] border pixel 5
+for_window [class=".*"] border pixel 0
 assign [class=URxvt] $terminals
 assign [class=Chromium-browser|Transmission-gtk] $chromium
 assign [class=Thunar|File-roller|Nemo] $filemanager
@@ -170,11 +172,13 @@ exec nemo
 exec evolution
 exec chromium-browser
 exec spotify
-exec emacs
+#exec emacs --daemon
+
+#exec "sh -c 'sleep 10; emacsclient --create-frame"
 
 # i3-gaps
-gaps inner 10
-gaps outer 10
+gaps inner 15
+gaps outer 20
 #smart_gaps on
 
 
