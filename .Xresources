@@ -3,37 +3,40 @@
 ! ------------------------------------------------------------------------------
 
 ! special
-*.foreground:   #f8f8f2
-*.background:   #282a36
-*.cursorColor:  #bd93f9
+*.foreground:   #d8dee8
+!*.background:   #2f343f
+
+*.background: #373E4C
+
+*.cursorColor:  #b48ead
 
 ! black
 *.color0  : #4b5262
 *.color8  : #434a5a
 
 ! red
-*.color1  : #ff5555
-*.color9  : #ff6655
+*.color1  : #bf616a
+*.color9  : #b3555e
 
 ! green
-*.color10  : #50fa7b
-*.color2 : #c678dd
+*.color2  : #a3be8c
+*.color10 : #93ae7c
 
 ! yellow
-*.color3  : #f1fa8c
-*.color11 : #ECBE7B
+*.color3  : #ebcb8b
+*.color11 : #dbbb7b
 
 ! blue
-*.color4  : #61bfff
-*.color12 : #61bfff
+*.color4  : #81a1c1
+*.color12 : #7191b1
 
 ! magenta
-*.color5  : #ff79c6
-*.color13 : #c678dd
+*.color5  : #b48ead
+*.color13 : #a6809f
 
 ! cyan
-*.color6  : #8be9fd
-*.color14 : #46D9FF
+*.color6  : #89d0bA
+*.color14 : #7dbba8
 
 ! white
 *.color7  : #e5e9f0
@@ -47,6 +50,7 @@ URxvt*font:			xft:DejaVu Sans Mono:regular:size=13
 URxvt*boldFont:			xft:DejaVu Sans Mono:bold:size=13
 URxvt*italicFont:		xft:DejaVu Sans Mono:italic:size=13
 URxvt*boldItalicFont:		xft:DejaVu Sans Mono:bold italic:size=13
+
 
 ! ------------------------------------------------------------------------------
 ! Xft Font Configuration
@@ -62,7 +66,6 @@ Xft.rgba: rgb
 ! ------------------------------------------------------------------------------
 ! URxvt configs
 ! ------------------------------------------------------------------------------
-
 URxvt.geometry:			82x16
 URxvt*letterSpace:	    -1
 URxvt.lineSpace:		0
@@ -90,10 +93,6 @@ URxvt.underlineURLs:    true
 URxvt.urlButton:        1
 URxvt*buffered:         false
 URxvt.urgentOnBell:	True
-URxvt.keysym.Control-Up:   \033[1;5A
-URxvt.keysym.Control-Down:    \033[1;5B
-URxvt.keysym.Control-Left:    \033[1;5D
-URxvt.keysym.Control-Right:    \033[1;5C
 
 ! ------------------------------------------------------------------------------
 ! Rofi configs
@@ -101,9 +100,9 @@ URxvt.keysym.Control-Right:    \033[1;5C
 
 rofi.color-enabled: true
 rofi.color-window: #2e3440, #2e3440, #2e3440
-rofi.color-normal: #2e3440, #f8f8f2, #2e3440, #2e3440, #ff5555
-rofi.color-active: #2e3440, #bd93f9, #2e3440, #2e3440, #50fa7b
-rofi.color-urgent: #2e3440, #f1fa8c, #2e3440, #2e3440, #f1fa8c
+rofi.color-normal: #2e3440, #d8dee9, #2e3440, #2e3440, #bf616a
+rofi.color-active: #2e3440, #b48ead, #2e3440, #2e3440, #93e5cc
+rofi.color-urgent: #2e3440, #ebcb8b, #2e3440, #2e3440, #ebcb8b
 rofi.modi: run,drun,window
 
 ! ------------------------------------------------------------------------------
@@ -119,8 +118,11 @@ dmenu.foreground:		#d8dee9
 !-------------------------------------------------------------------------------
 ! Control key configs
 !-------------------------------------------------------------------------------
-! Urxvt.tabbed.no-tabbedex-keys: true
-! URxvt.keysym.Control-Up:     \033[1;5A
-! URxvt.keysym.Control-Down:   \033[1;5B
-! URxvt.keysym.Control-Left:   \033[1;5D
-! URxvt.keysym.Control-Right:  \033[1;5C
+Urxvt.tabbed.no-tabbedex-keys: true
+URxvt.keysym.Control-Up:     \033[1;5A
+URxvt.keysym.Control-Down:   \033[1;5B
+URxvt.keysym.Control-Left:   \033[1;5D
+URxvt.keysym.Control-Right:  \033[1;5C
+
+!! Emacs
+emacs.verticalScrollBars: false

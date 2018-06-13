@@ -9,4 +9,4 @@ visualizer_sample_multiplier = 2
 visualizer_sync_interval = 20
 
 allow_for_physical_item_deletion = no
-mpd_port = 6601
+mpd_port = 6600

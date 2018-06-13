@@ -17,6 +17,8 @@ secondary = #d8dee8
 alert = #f1fa8c
 
 
+
+
 [bar/top]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
@@ -25,7 +27,7 @@ offset-x = 0%
 offset-y = 0%
 radius = 0.0
 fixed-center = true
-bottom = false
+bottom = true
 background = #00000000; ${colors.background}
 foreground = ${colors.foreground}
 line-size = 3
@@ -38,11 +40,11 @@ padding-right = 0
 module-margin-left = 1
 module-margin-right = 2
 font-0 = DejaVu:pixelsize=14;
-font-1 = FontAwesome:pixelsize=18;
+font-1 = FontAwesome:pixelsize=16;
 
 ;override-redirect = true
-modules-left = mpd
-modules-center = i3
+modules-left = i3
+modules-center = gmusic
 modules-right =  dropbox-isrunning wlan cpu volume xbacklight battery date
 
 tray-position =
@@ -207,7 +209,7 @@ label-mode-background = ${colors.primary}
 label-focused = %name%
 label-focused-foreground = #ffffff
 label-focused-background = #00FFFFFF
-label-focused-underline = #bd93f9
+label-focused-underline = #507681
 label-focused-padding = 2
 
 ; unfocused = Inactive workspace on any monitor
@@ -292,8 +294,8 @@ bformat-connected =   <label-connected>
 
 ;label-connected =  %essid%
 
-label-connected = %{A:nm-connection-editor&:} %essid%%{A}
-format-disconnected = %{A:nm-connection-editor&:} Click to connect%{A}
+label-connected = %{A:cinnamon-control-center network&:} %essid%%{A}
+format-disconnected = %{A:cinnamon-control-center network&:} Click to connect%{A}
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
@@ -526,3 +528,10 @@ format = <label>
 exec = ~/.config/polybar/spotify
 click-left = ~/.config/polybar/spotify pause
 click-right = ~/.config/polybar/spotify next
+
+[module/gmusic]
+type = custom/script
+interval = 2
+format = <label>
+exec = ~/.config/polybar/gpmdp.py
+click-left = playerctl play-pause

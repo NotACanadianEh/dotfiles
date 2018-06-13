@@ -1,3 +1,27 @@
+set_from_resource $base03   i3wm.color8     #002b36
+set_from_resource $base02   i3wm.color0     #073642
+set_from_resource $base01   i3wm.color10    #586e75
+set_from_resource $base00   i3wm.color11    #657b83
+set_from_resource $base0    i3wm.color12    #839496
+set_from_resource $base1    i3wm.color14    #93a1a1
+set_from_resource $base2    i3wm.color7     #eee8d5
+set_from_resource $base3    i3wm.color15    #fdf6e3
+
+set_from_resource $yellow   i3wm.color3     #b58900
+set_from_resource $orange   i3wm.color9     #cb4b16
+set_from_resource $red      i3wm.color1     #dc322f
+set_from_resource $magenta  i3wm.color5     #d33682
+set_from_resource $violet   i3wm.color13    #6c71c4
+set_from_resource $blue     i3wm.color4     #268bd2
+set_from_resource $cyan     i3wm.color6     #2aa198
+set_from_resource $green    i3wm.color2     #859900
+
+set_from_resource $background i3wm.background $base3
+set_from_resource $foreground i3wm.foreground $base00
+
+set_from_resource $lighterbg  i3wm.lighterbg  $base02
+set_from_resource $separator  i3wm.separator  $lighterbg
+
 # set modifier
 set $super Mod4
 set $alt Mod1
@@ -18,7 +42,7 @@ bindsym $super+Return exec rxvt-unicode
 
 # start dmenu (a program launcher)
 bindsym $super+Shift+d exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:size=8'"
-bindsym $super+d exec rofi -lines 22 -padding 18 -width 80 -location 0 -show drun  -columns 2 -font 'DejaVu Sans Mono 13'
+bindsym $super+d exec rofi -show drun
 bindsym $super+Tab exec rofi -lines 22 -padding 18 -width 80 -location 0 -show window  -columns 1 -font 'DejaVu Sans Mono 13'
 
 # common apps keybinds
@@ -41,11 +65,9 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightne
 
 
 # Media player controls
-bindsym XF86AudioPlay exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
-bindsym XF86AudioStop exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop"
-bindsym XF86AudioPrev exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
-bindsym XF86AudioNext exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
-
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 
 
 # kill focused window
@@ -166,13 +188,13 @@ client.background		#2f343f
 exec xinput set-prop 11 272 1
 
 # startup auto
-exec xmodmap ~/.xmodmap
+#exec xmodmap ~/.xmodmap
 exec dropbox start
 exec nemo
 exec evolution
 exec chromium-browser
-exec spotify
-#exec emacs --daemon
+#exec spotify
+exec emacs --daemon
 
 #exec "sh -c 'sleep 10; emacsclient --create-frame"
 
